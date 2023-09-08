@@ -14,7 +14,3 @@ export const fetchImages = async (query, page) => {
     return img.data
 }
 
-// export const iImages = imagesArray =>
-//   imagesArray.map(({ id, tags, webformatURL, largeImageURL }) => {
-//     return { id, tags, webformatURL, largeImageURL };
-//   });

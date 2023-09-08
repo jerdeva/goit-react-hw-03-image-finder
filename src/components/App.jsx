@@ -36,7 +36,7 @@ componentDidUpdate(_, prevState) {
       const { hits, totalHits } = await fetchImages(query, page);
       if (!hits.length) {
         this.setState({ loadMore: false });
-        alert('Nothing was found for your request. Try something else');
+        alert('SORRY! NOTHING WAS FOUND FOR YOUR REQUEST. TRY AGAIN');
       } else {
         this.setState((prevState) => ({
           images: [...prevState.images, ...hits],
@@ -77,7 +77,8 @@ componentDidUpdate(_, prevState) {
            {loading && <Loader/>}
           <Searchbar handleSubmit={this.handleSubmit} />
           {loading && <Loader/>}
-        {error && !loading && <div>OOPS! THERE WAS AN ERROR!</div>}
+          {error && !loading &&
+            <div>OOPS! ERROR!</div>}
           < ImageGallery
             images={images}
           />
