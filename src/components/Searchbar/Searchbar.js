@@ -1,4 +1,7 @@
 import { Component } from 'react';
+import { BtnSearch } from './Searchbar.styled';
+import { Wrapper } from './Searchbar.styled';
+import {InputArea} from './Searchbar.styled'
 
 export class Searchbar extends Component {
   state = {
@@ -18,21 +21,24 @@ export class Searchbar extends Component {
 
   render() {
     return (
-      <header className="searchbar">
-        <form onSubmit={this.handleSubmit}>
-          <button type="submit">
-            <span>Search</span>
-          </button>
-          <input
-            type="text"
-            id="search"
-            value={this.state.query}
-            onChange={this.handleNameChange}
-            autoComplete="off"
-            autoFocus
-            placeholder="Search images and photos" />
-        </form>
-      </header>
+      <div>
+        <header className="searchbar">
+          <Wrapper onSubmit={this.handleSubmit}>
+            <BtnSearch type="submit">
+              <span>Search</span>
+            </BtnSearch>
+            <InputArea
+              type="text"
+              id="search"
+              value={this.state.query}
+              onChange={this.handleNameChange}
+              autoComplete="off"
+              autoFocus
+              placeholder="Search images and photos"
+            />
+          </Wrapper>
+        </header>
+      </div>
     );
   }
 }

@@ -1,19 +1,11 @@
 import { Component } from 'react';
 import React from 'react';
 import { Searchbar } from './Searchbar/Searchbar'
-import {fetchImages} from './Api'
-// import axios from 'axios';
-import { Audio } from 'react-loader-spinner'
-;<Audio
-  height="80"
-  width="80"
-  radius="9"
-  color="green"
-  ariaLabel="loading"
-  wrapperStyle
-  wrapperClass
-/>
-
+import { fetchImages } from './Api'
+import {ImageGallery} from './ImageGallery/ImageGallery'
+import {ButtonLoadMore} from './Button/Button'
+import { Loader } from './Loader/Loader'
+  
 
 
 
@@ -24,6 +16,7 @@ export class App extends Component{
     page: 1,
     per_page: 12,
     loadMore: false,
+    modal:false,
     error: null,
     };
   
@@ -62,21 +55,34 @@ componentDidUpdate(_, prevState) {
     };
   
 
-  onloadMore = () => {
-    this.setState((prevState) => ({ page: prevState.page + 1 }));
-    this.scrollToBottomButton();
+    loadMore = () => {
+      this.setState((prevState) => ({ page: prevState.page + 1 }));
+    };
+
+   toggleModal = id => {
+    this.setState({ modal: !this.state.modal, id: id });
+   };
+  
+    closeModal = () => {
+    this.setState({ modal: !this.state.modal });
   };
 
 
 
 
   render() {
-
-        // const { images, loadMore } = this.state;
-
+        const { images, loadMore, loading, error } = this.state;
       return (
         <div>
+           {loading && <Loader/>}
           <Searchbar handleSubmit={this.handleSubmit} />
+          {loading && <Loader/>}
+        {error && !loading && <div>OOPS! THERE WAS AN ERROR!</div>}
+          < ImageGallery
+            images={images}
+          />
+           {loading && <Loader/>}
+          {loadMore && <ButtonLoadMore onloadMore={this.loadMore} />}
     </div>
   );
   }
