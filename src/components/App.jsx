@@ -55,7 +55,7 @@ componentDidUpdate(_, prevState) {
     handleSubmit = (query) => {
       // this.setState({ query, images: [], page: 1 });
       if (query !== this.state.query) {
-        this.setState({ query: `${query}` })
+        this.setState({ query: `${query}` , images:[], page:1})
       }
     };
   
