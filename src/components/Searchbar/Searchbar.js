@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { BtnSearch } from './Searchbar.styled';
 import { Wrapper } from './Searchbar.styled';
-import {InputArea} from './Searchbar.styled'
+import { InputArea } from './Searchbar.styled';
 
 export class Searchbar extends Component {
   state = {
@@ -9,15 +9,14 @@ export class Searchbar extends Component {
   };
 
   handleNameChange = event => {
-    this.setState({ query: event.currentTarget.value.toLowerCase()});
+    this.setState({ query: event.currentTarget.value.toLowerCase() });
   };
 
   handleSubmit = event => {
     event.preventDefault();
-        this.props.handleSubmit(this.state.query);
-        this.setState({ query: '' });
-    };
-  
+    this.props.handleSubmit(this.state.query);
+    // this.setState({ query: '' });
+  };
 
   render() {
     return (

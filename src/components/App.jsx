@@ -26,7 +26,9 @@ componentDidUpdate(_, prevState) {
     if (prevState.query !== query || prevState.page !== page) {
       this.getImages(query, page);
     }
-  }
+}
+  
+  
 
   getImages = async (query, page) => {
     if (!query) {
@@ -51,7 +53,10 @@ componentDidUpdate(_, prevState) {
   };
 
     handleSubmit = (query) => {
-      this.setState({ query, images: [], page: 1 });
+      // this.setState({ query, images: [], page: 1 });
+      if (query !== this.state.query) {
+        this.setState({ query: `${query}` })
+      }
     };
   
 
@@ -78,6 +83,7 @@ componentDidUpdate(_, prevState) {
           <Searchbar handleSubmit={this.handleSubmit} />
           {loading && <Loader/>}
           {error && !loading &&
+            
             <div>OOPS! ERROR!</div>}
           < ImageGallery
             images={images}
